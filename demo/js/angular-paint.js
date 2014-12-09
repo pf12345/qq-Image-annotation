@@ -330,7 +330,21 @@
                     height: $rootScope.image.height,
                     width: $rootScope.image.width
                 });
-
+                var layer1 = new Kinetic.Layer();
+                stage.add(layer1);
+                if($rootScope.image.export) {
+                    var img0 = new Image();
+                    img0.src = $rootScope.image.src;
+                    img0.crossOrigin="*";
+                    img0.onload = function() {
+                        var image = new Kinetic.Image({
+                            image: img0,
+                            x: 0,
+                            y: 0
+                        });
+                        layer1.add(image);
+                    };
+                }
                 layer.add(background);
                 stage.add(layer);
                 paintCanvas.layer = layer;
@@ -590,6 +604,9 @@
             scope: "@",
             link: function (scope, element, attrs) {
                 $rootScope.image.src = attrs.imgSrc;
+                if(attrs.exportimg !== undefined) {
+                    $rootScope.image.export = true;
+                }
             }
         }
     }]).directive("canvasInit", ["$rootScope", function ($rootScope) {
