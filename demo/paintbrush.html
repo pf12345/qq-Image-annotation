@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="reviewPaint">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/angular-paint.css"/>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/kinetic.min.5.0.1.js"></script>
+    <script src="js/angular-paint.js"></script>
+</head>
+<body>
+<div id='review-paint'>
+    <div paint img-src="test.png"></div>
+</div>
+<script>
+    angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
+</script>
+</body>
+</html>

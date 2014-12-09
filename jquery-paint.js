@@ -1,20 +1,27 @@
-$(document).ready(function () {
-    var stage = new Kinetic.Stage({
-        container: 'canvas',
-        width: 350,
-        height: 350
-    });
-    var layer = new Kinetic.Layer();
-    var background = new Kinetic.Rect({
-        x: 0,
-        y: 0,
-        height: 350,
-        width: 350,
-        fill: "#000"
-    });
-    layer.add(background);
-    stage.add(layer);
 
+$(document).ready(function () {
+
+    var img = new Image();
+    img.src = 'https://file.mockplus.cn/webapp/project/pbEQpnK9A/fh29Zfums.png?v=1417696400000';
+    img.onload = function() {
+        var height = this.height,
+            width = this.width;
+        stage = new Kinetic.Stage({
+            container: 'canvas',
+            width: width,
+            height: height
+        });
+        layer = new Kinetic.Layer();
+        background = new Kinetic.Rect({
+            x: 0,
+            y: 0,
+            height: height,
+            width: width
+        });
+        layer.add(background);
+        stage.add(layer);
+    };
+    var stage, layer, background;
     var strokeWidth = 3; //边框宽度
     var haveShowModuleArr = []; //记录已经执行步骤数组，即当前动作的前序动作
     var needShowModuleArr = []; //记录需要执行步骤数组，即当前动作的后续动作
@@ -38,7 +45,7 @@ $(document).ready(function () {
     var Paint = function () {
         var isMouseDown = false, points = [];
         this.onMousedown = function (event) {
-            if (operationStatus !== 'painting') {
+            if (operationStatus !== 'painting' || event.target.nodeName !== 'CANVAS') {
                 return;
             }
             isMouseDown = true;
@@ -69,8 +76,10 @@ $(document).ready(function () {
             }
             isMouseDown = true;
             var pointerPos = stage.getPointerPosition();
-            points.push(pointerPos.x);
-            points.push(pointerPos.y);
+            if(pointerPos) {
+                points.push(pointerPos.x);
+                points.push(pointerPos.y);
+            }
             layer.draw();
         };
         this.onMouseup = function (event) {
@@ -87,6 +96,7 @@ $(document).ready(function () {
                 moving = false;
                 layer.draw();
             } else {
+                if(event.target.nodeName !== 'CANVAS') {return;}
                 var mousePos = stage.getPointerPosition();
                 group = new Kinetic.Group({
                     x: mousePos.x,
@@ -112,7 +122,9 @@ $(document).ready(function () {
             }
         };
         this.onMousemove = function (event) {
-            if(!moving) {return;}
+            if (!moving) {
+                return;
+            }
             var mousePos = stage.getPointerPosition();
             var x = mousePos.x - group.x();
             var y = mousePos.y - group.y();
@@ -155,6 +167,7 @@ $(document).ready(function () {
                 moving = false;
                 layer.draw();
             } else {
+                if(event.target.nodeName !== 'CANVAS') {return;}
                 startPos = stage.getPointerPosition();
                 cycle = new Kinetic.Circle({
                     x: startPos.x,
@@ -185,8 +198,8 @@ $(document).ready(function () {
             cycle.radius(parseInt(Math.abs(redius)));
             if (pointerPos.x > startPos.x && pointerPos.y < startPos.y) {
                 cycle.position({
-                    x: startPos.x + parseInt(redius),
-                    y: startPos.y - parseInt(redius)
+                    x: startPos.x + parseInt(Math.abs(redius)),
+                    y: startPos.y - parseInt(Math.abs(redius))
                 });
             } else if (pointerPos.x < startPos.x && pointerPos.y > startPos.y) {
                 cycle.position({
@@ -223,6 +236,7 @@ $(document).ready(function () {
                 moving = false;
                 layer.draw();
             } else {
+                if(event.target.nodeName !== 'CANVAS') {return;}
                 startPos = stage.getPointerPosition();
                 rect = new Kinetic.Rect({
                     x: startPos.x,
@@ -276,6 +290,7 @@ $(document).ready(function () {
             moving = true;
         };
         this.onMouseup = function (event) {
+            if(event.target.nodeName !== 'CANVAS') {return;}
             moving = false;
             if (rect.width() < 5 && rect.height() < 5) {
                 rect.destroy();
@@ -317,7 +332,7 @@ $(document).ready(function () {
     /**
      * 为canvas添加mouseDown事件
      */
-    $(stage.getContent()).on("mousedown", function (event) {
+    $('#canvas').on("mousedown", function (event) {
         if (operationStatus === 'painting') {
             paint.onMousedown(event);
         } else if (operationStatus === 'arrow') {
@@ -332,7 +347,7 @@ $(document).ready(function () {
     /**
      * 为canvas添加mousemove事件
      */
-    $(stage.getContent()).on("mousemove", function (event) {
+    $('#canvas').on("mousemove", function (event) {
         if (operationStatus === 'painting') {
             paint.onMousemove(event);
         } else if (operationStatus === 'arrow') {
@@ -347,7 +362,7 @@ $(document).ready(function () {
     /**
      * 为canvas添加mouseup事件
      */
-    $(stage.getContent()).on("mouseup", function (event) {
+    $('#canvas').on("mouseup", function (event) {
         if (operationStatus === 'painting') {
             paint.onMouseup(event);
         } else if (operationStatus === 'arrow') {
@@ -362,12 +377,14 @@ $(document).ready(function () {
     /**
      * 为canvas添加click事件
      */
-    $(stage.getContent()).on("click", function (event) {
+    $('.kineticjs-content').on("click", function (event) {
         if (operationStatus !== 'text') {
             return;
         }
-        var x = event.pageX,
-            y = event.pageY;
+        var offsetLeft = document.getElementById('review-paint-content').offsetLeft,
+            offsetTop = document.getElementById('review-paint-content').offsetTop;
+        var x = event.pageX - offsetLeft,
+            y = event.pageY - offsetTop;
         $('input[type=text]').css({
             top: y + 'px',
             left: x + 'px'
@@ -377,7 +394,7 @@ $(document).ready(function () {
     $('input[type=text]').blur(function (event) {
         var _this = this;
         var x = $(_this).position().left,
-            y = $(_this).position().top - 20;
+            y = $(_this).position().top;
         var text = new Kinetic.Text({
             text: $(_this).val(),
             x: x,
@@ -460,5 +477,13 @@ $(document).ready(function () {
     //切换至方形模式
     $('#rect').click(function () {
         operationStatus = 'rect';
+    });
+
+    //清除所有已经拥有数据
+    $('#clearAll').click(function () {
+        stage.get('.module').destroy();
+        layer.draw();
+        haveShowModuleArr = [];
+        needShowModuleArr = [];
     });
 });
