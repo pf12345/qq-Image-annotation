@@ -7,6 +7,8 @@ qq Image annotation
 
 一个angular组件，用于如QQ截图后在图片上可以进行画笔绘画、文字输入、创建圆、方形、更换颜色；可以使用undo、redo操作，也可以导出操作后的图片；组件使用cavans实现，兼容性将为ie9及以上，并使用canvas框架kineticjs进行实现，且没有使用juqery，使用纯js实现，使用较为简单实用。
 
+<a target="_blank" href="http://pf12345.github.io/demo/qq-Image-annotation/paintbrush.html">示例demo</a>
+
 安装使用：
 由于是angular组件，所有需要添加相关模块，首先，添加相应的js及css文件，下载此所有文件后，如下添加至头部：
 <pre>
@@ -49,3 +51,4 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 
 <img src="all1.png" height="400"/>
 
+<b>注：在点击“保存”时，实际是在浏览器打开操作图片，有些浏览器会阻止弹出窗口，请允许查看。</b>
