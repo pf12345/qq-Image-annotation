@@ -1,0 +1,264 @@
+#review-paint #canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1020;
+}
+#review-paint a {
+    text-decoration: none;
+}
+#review-paint .button {
+    display: inline-block;
+    padding: 7px 10px;
+    margin-bottom: 0;
+    color: #333333;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(top, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25)
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    width: 75px;
+    line-height: 24px;
+    margin-right: 10px;
+    outline: none;
+}
+#review-paint .btn-cancel {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: #cdd3dc;
+    color: #8b93a1;
+}
+#review-paint .btn-save {
+    color: #fff;
+    background: #f74172;
+}
+#review-paint .header .save {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+#review-paint .choiceColor {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #ccc;
+    z-index: 1021;
+    height: 34px;
+    cursor: pointer;
+}
+#review-paint .choiceColor > div {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    margin: 1px;
+}
+#review-paint .choiceColor .list {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 140px;
+    z-index: 1020;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 2px rgba(50,65,95,.42),0 3px 8px rgba(51,60,78,.17);
+    -moz-box-shadow: 0 0 2px rgba(50,65,95,.42),0 3px 8px rgba(51,60,78,.17);
+    box-shadow: 0 0 2px rgba(50,65,95,.42),0 3px 8px rgba(51,60,78,.17);
+    padding: 0 0 5px 5px;
+}
+#review-paint .choiceColor .list i {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
+}
+#review-paint #inputText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+#review-paint input[type=text] {
+    color: #f00;
+    z-index: 1020;
+    font-size: 16px;
+    font-weight: bold;
+}
+#review-paint .content {
+    margin: 40px;
+    text-align: center;
+}
+#review-paint:after, #review-paint {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1019;
+}
+#review-paint {
+    background: rgba(0,0,0,1);
+}
+#review-paint div {
+    position: relative;
+    z-index: 1020;
+}
+#review-paint .header {
+    height: 38px;
+    background-color: #eceef4;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1021;
+}
+#review-paint .header a {
+    height: 38px;
+    width: 38px;
+    margin: 0 5px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 38px;
+    border-radius: 3px;
+}
+#review-paint .active {
+   background-color: #f74172;
+}
+#review-paint .tool_icon {
+    display: inline-block;
+    background: url(../review_paint_sketch_tools.png) no-repeat;
+    position: relative;
+    cursor: pointer;
+    vertical-align: super;
+}
+#review-paint .tool_pencil {
+    background-position: 0 -104px;
+    width: 26px;
+    height: 26px;
+    top: 6px;
+    left: 2px;
+}
+#review-paint .tool_pencil:hover {
+    background-position: -26px -104px;
+}
+#review-paint .active .tool_pencil {
+    background-position: -52px -104px;
+}
+#review-paint .tool_square {
+    background-position: 0 0;
+    width: 26px;
+    height: 25px;
+    top: 7px;
+}
+#review-paint .tool_square:hover {
+    background-position: -26px 0;
+}
+#review-paint .active .tool_square{
+    background-position: -52px 0;
+}
+#review-paint .tool_circle {
+    background-position: 0 -25px;
+    width: 26px;
+    height: 26px;
+    top: 6px;
+}
+#review-paint .tool_circle:hover {
+    background-position: -26px -25px;
+}
+#review-paint .active .tool_circle {
+    background-position: -52px -25px;
+}
+#review-paint .tool_line {
+    background-position: 0 -50px;
+    width: 26px;
+    height: 25px;
+    top: 7px;
+}
+#review-paint .tool_line:hover {
+    background-position: -26px -50px;
+}
+#review-paint .active .tool_line {
+    background-position: -52px -50px;
+}
+#review-paint .tool_text {
+    background-position: 0 -80px;
+    width: 24px;
+    height: 25px;
+    top: 10px;
+}
+#review-paint .tool_text:hover {
+    background-position: -26px -80px;
+}
+#review-paint .active .tool_text {
+    background-position: -48px -80px;
+}
+#review-paint .tool_move {
+    background-position: 0 -135px;
+    width: 22px;
+    height: 22px;
+    top: 9px;
+}
+#review-paint .tool_move:hover {
+    background-position: -22px -135px;
+}
+#review-paint .active .tool_move {
+    background-position: -44px -135px;
+}
+#review-paint .tool_undo {
+    width: 17px;
+    height: 15px;
+    background-position: 0 -159px;
+    vertical-align: middle;
+}
+#review-paint .tool_undo:hover {
+    background-position: -18px -159px;
+}
+
+#review-paint .tool_redo {
+    width: 17px;
+    height: 15px;
+    background-position: 0 -176px;
+    vertical-align: middle;
+}
+#review-paint .tool_redo:hover {
+    background-position: -17px -176px;
+}
+
+#review-paint .tool_delete {
+    width: 17px;
+    height: 21px;
+    background-position: 1px -191px;
+    top: 3px;
+    vertical-align: middle;
+}
+#review-paint .tool_delete:hover {
+    background-position: -15px -191px;
+}
+

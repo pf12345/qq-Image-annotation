@@ -40,6 +40,16 @@
                 height: height,
                 width: width
             });
+            if(options.exportimg) {
+                var layer1 = new Kinetic.Layer();
+                stage.add(layer1);
+                var image = new Kinetic.Image({
+                    image: img,
+                    x: 0,
+                    y: 0
+                });
+                layer1.add(image);
+            }
             layer.add(background);
             stage.add(layer);
 
