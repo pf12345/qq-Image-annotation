@@ -26,9 +26,9 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 
 添加html,在使用时，需要添加html元素进行展示，如下：
 <pre>
-&lt;div id='review-paint'&gt;
-    &lt;div paint img-src="test.png"&gt;&lt;/div&gt;
-&lt;/div&gt;
+
+&lt;div paint img-src="test.png"&gt;&lt;/div&gt;
+
 </pre>
 只需要添加如下元素即可，在子元素div中，有个paint属性及img-src，这两个是必须的，第一个是用于添加此组件指令，而img-src则用于传递需要操作的图片路径；
 
@@ -41,9 +41,9 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 2、运行需要搭建一个本地服务器上运行，即不能直接本地打开，即路径不能是：“file:///”开始；
 3、在上面html代码需要修改如下：
 <pre>
-&lt;div id='review-paint'&gt;
-    &lt;div paint img-src="test.png" exportImg &gt;&lt;/div&gt;
-&lt;/div&gt;
+
+&lt;div paint img-src="test.png" exportImg &gt;&lt;/div&gt;
+
 </pre>
 如果有以上添加满足，则可以导出整体图片，导出结果如下：
 
