@@ -45,5 +45,6 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 &lt;/div&gt;
 </pre>
 如果有以上添加满足，则可以导出整体图片，导出结果如下：
+
 <img src="all1.png" height="400"/>
 
