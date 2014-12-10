@@ -138,13 +138,17 @@
             '</div>';
         $(el).append(html);
         $('.header a').click(function() {
+            var mode = $(this).attr('data-active');
+            if(!mode) return;
+
             $('.header a').each(function() {
                 if($(this).attr('class') && $(this).attr('class').match('active')) {
                     $(this).removeClass('active');
                 }
             });
+
             $(this).addClass('active');
-            var mode = $(this).attr('data-active');
+
             operationStatus = mode;
             if (mode === 'drag') {
                 stage.get('.module').draggable(true);
@@ -490,17 +494,26 @@
 
 
         $('input[type=text]').blur(function (event) {
-            var _this = this;
-            var x = $(_this).position().left,
-                y = $(_this).position().top;
+            var paintContent = document.getElementById("review-paint-content"),
+                canvasContent = paintContent.getElementsByClassName("kineticjs-content")[0],
+                _this = document.getElementById("inputText"),
+                canvasLeft = canvasContent.offsetLeft,
+                canvasTop = canvasContent.offsetTop,
+                _thisLeft = _this.offsetLeft,
+                _thisTop = _this.offsetTop,
+                x = _thisLeft - canvasLeft,
+                y = _thisTop - canvasTop;
+            var textVal = _this.value;
+
             var text = new Kinetic.Text({
-                text: $(_this).val(),
+                text: textVal,
                 x: x,
                 y: y,
-                fill: 'red',
+                fill: options.defaultColor,
                 fontSize: 16,
                 align: "center",
-                name: 'module'
+                name: 'module',
+                fontStyle: "bold"
             });
             layer.add(text);
             layer.draw();
@@ -510,7 +523,7 @@
                 node: text
             };
             haveShowModuleArr.push(currentAction);
-            $(_this).hide().val('');
+            $(this).hide().val('');
         });
 
         //点击上一步 undo操作
