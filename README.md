@@ -33,6 +33,7 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 只需要添加如下元素即可，在子元素div中，有个paint属性及img-src，这两个是必须的，第一个是用于添加此组件指令，而img-src则用于传递需要操作的图片路径；
 
 添加成功后，即可看到相应的界面及操作，在操作右上角有“保存”按钮，用于导出操作图片，默认是只能导出操作的相关动作的图片，不包括原图，如下图：
+
 <img src="nobackground.png" height="400"/>
 
 如果需要一同导出原图，则需要有以下添加：
