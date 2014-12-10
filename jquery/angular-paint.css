@@ -111,13 +111,8 @@
     font-weight: bold;
 }
 #review-paint .content {
-    position: relative;
     margin: 40px;
     text-align: center;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    top: 50%;
-    margin-top: -30px;
 }
 #review-paint:after, #review-paint {
     content: "";

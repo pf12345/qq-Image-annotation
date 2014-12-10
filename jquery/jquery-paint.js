@@ -23,6 +23,52 @@
         };
     Paint = function(el, options) {
         var stage, layer, background;
+        var img = new Image();
+        img.src = options.imgSrc;
+        img.onload = function() {
+            var height = this.height,
+                width = this.width;
+            stage = new Kinetic.Stage({
+                container: 'canvas',
+                width: width,
+                height: height
+            });
+            layer = new Kinetic.Layer();
+            background = new Kinetic.Rect({
+                x: 0,
+                y: 0,
+                height: height,
+                width: width
+            });
+            layer.add(background);
+            stage.add(layer);
+
+            /**
+             * 为canvas添加click事件
+             */
+            $('.kineticjs-content').click(function (event) {
+                if (operationStatus !== 'text') {
+                    return;
+                }
+                if($('input[type=text]').css('display') !== 'none') {
+                    $('input[type=text]').blur();
+                    return;
+                }
+                var canvas = document.getElementById('review-paint-content'),
+                    offsetLeft = $(canvas).offset().left || canvas.offsetLeft,
+                    offsetTop = $(canvas).offset().top || canvas.offsetTop;
+
+                var x = event.pageX - offsetLeft,
+                    y = event.pageY - offsetTop;
+
+
+                $('input[type=text]').css({
+                    top: y + 'px',
+                    left: x + 'px',
+                    color: options.defaultColor
+                }).show().focus();
+            });
+        };
         var strokeWidth = 3; //边框宽度
         var haveShowModuleArr = []; //记录已经执行步骤数组，即当前动作的前序动作
         var needShowModuleArr = []; //记录需要执行步骤数组，即当前动作的后续动作
@@ -69,24 +115,24 @@
             '<a ng-click="switchingMode(\'drag\')" data-active="drag">' +
             '<i class="tool_icon tool_move" title="拖动"></i>' +
             '</a>' +
-            '<a ng-click="lastStep()">' +
+            '<a id="lastStep">' +
             '<i class="tool_icon tool_undo" title="上一步"></i>' +
             '</a>' +
-            '<a ng-click="nextStep()">' +
+            '<a id="nextStep">' +
             '<i class="tool_icon tool_redo" title="下一步"></i>' +
             '</a>' +
-            '<a ng-click="clearAll()">' +
+            '<a id="clearAll">' +
             '<i class="tool_icon tool_delete" title="清除所有"></i>' +
             '</a>' +
             '<div class="save">' +
-            '<input type="button" ng-click="cancel()" class="btn btn-cancel" value="取消">' +
-            '<input type="button" ng-click="save()" class="btn btn-save" value="保存">' +
+            '<input type="button" class="button btn-cancel" value="取消">' +
+            '<input type="button" id="save" class="button btn-save" value="保存">' +
             '</div>' +
             '</div>' +
             '<div class="content" id="review-paint-content">' +
             '<img alt="示例图片" src="'+options.imgSrc+'">' +
             '<input id="inputText" type="text" ng-blur="inputBlur()" style="display: none" >' +
-            '<div id="canvas" ng-mousedown="onMouseDown($event)" ng-mousemove="onMouseMove($event)" ng-mouseup="onMouseUp($event)" ng-click="addText($event)">' +
+            '<div id="canvas">' +
             '</div>' +
             '</div>' +
             '</div>';
@@ -122,7 +168,7 @@
                 points.push(pointerPos.y);
                 var line = new Kinetic.Line({
                     points: points,
-                    stroke: "red",
+                    stroke: options.defaultColor,
                     strokeWidth: strokeWidth,
                     lineCap: 'round',
                     lineJoin: 'round',
@@ -172,7 +218,7 @@
                     });
                     line = new Kinetic.Line({
                         points: [0, 0, 0, 0], //start point and end point are the same
-                        stroke: 'red',
+                        stroke: options.defaultColor,
                         strokeWidth: strokeWidth,
                         name: 'module'
                     });
@@ -240,7 +286,7 @@
                         x: startPos.x,
                         y: startPos.y,
                         radius: 1,
-                        stroke: 'red',
+                        stroke: options.defaultColor,
                         strokeWidth: strokeWidth,
                         name: 'module'
                     });
@@ -310,7 +356,7 @@
                         y: startPos.y,
                         width: 1,
                         height: 1,
-                        stroke: 'red',
+                        stroke: options.defaultColor,
                         cornerRadius: 5,
                         strokeWidth: strokeWidth,
                         name: 'module'
@@ -441,22 +487,7 @@
             }
         });
 
-        /**
-         * 为canvas添加click事件
-         */
-        $('.kineticjs-content').on("click", function (event) {
-            if (operationStatus !== 'text') {
-                return;
-            }
-            var offsetLeft = document.getElementById('review-paint-content').offsetLeft,
-                offsetTop = document.getElementById('review-paint-content').offsetTop;
-            var x = event.pageX - offsetLeft,
-                y = event.pageY - offsetTop;
-            $('input[type=text]').css({
-                top: y + 'px',
-                left: x + 'px'
-            }).show().focus();
-        });
+
 
         $('input[type=text]').blur(function (event) {
             var _this = this;
@@ -513,13 +544,29 @@
                 console.log('已经到最后一步了');
             }
         });
+
+        //清除所有已经拥有数据
+        $('#clearAll').click(function () {
+            stage.get('.module').destroy();
+            layer.draw();
+            haveShowModuleArr = [];
+            needShowModuleArr = [];
+        });
+
+        $('#save').click(function() {
+            stage.toDataURL({
+                callback: function (dataUrl) {
+                    window.open(dataUrl)
+                }
+            });
+        });
     };
 
 
     $.fn.ImageAnnotation = function (options) {
         options = $.extend({}, singleDefault, options);
         $(this).each(function() {
-            var paint = new Paint(this, options);
+            new Paint(this, options);
         });
     }
 })(jQuery);

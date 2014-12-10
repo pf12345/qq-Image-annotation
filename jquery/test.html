@@ -3,17 +3,18 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="reset.css"/>
+    <link rel="stylesheet" href="../../stylesheets/reset.css"/>
     <link rel="stylesheet" href="angular-paint.css"/>
-    <script src="jquery-1.7.2.min.js"></script>
-    <script src="kinetic.min.5.0.1.js"></script>
+    <script src="../jquery/jquery-1.7.2.min.js"></script>
+    <script src="../review/kinetic.min.5.0.1.js"></script>
     <script src="jquery-paint.js"></script>
 </head>
 <body>
     <div id="test"></div>
     <script>
         $('#test').ImageAnnotation({
-            imgSrc: 'https://file.mockplus.cn/webapp/project/pbEQpnK9A/fh29Zfums.png?v=1417696400000'
+            imgSrc: 'https://file.mockplus.cn/webapp/project/pbEQpnK9A/fh29Zfums.png?v=1417696400000',
+            defaultColor: "green"
         });
     </script>
 </body>
