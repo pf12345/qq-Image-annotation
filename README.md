@@ -5,7 +5,7 @@ qq Image annotation
 <p></p>
 <img src="qq.png" width="600" height="200" />
 
-一个angular及jquery组件，用于如QQ截图后在图片上可以进行画笔绘画、文字输入、创建圆、方形、更换颜色；可以使用undo、redo操作，也可以导出操作后的图片；组件使用cavans实现，兼容性将为ie9及以上，并使用canvas框架kineticjs进行实现，且没有使用juqery，使用纯js实现，使用较为简单实用。
+一个angular及jquery组件，用于如QQ截图后在图片上可以进行画笔绘画、文字输入、创建圆、方形、更换颜色；可以使用undo、redo操作，也可以导出操作后的图片；组件使用cavans实现，兼容性将为ie9及以上，并使用canvas框架kineticjs进行实现，且angular中没有使用juqery，使用纯js实现，使用较为简单实用。
 
 ##angular
 
@@ -15,14 +15,14 @@ qq Image annotation
 
 由于是angular组件，所有需要添加相关模块，首先，添加相应的js及css文件，下载此所有文件后，如下添加至头部：
 <pre>
-    &lt;link rel="stylesheet" href="/stylesheets/reset.css"/&gt;
-    &lt;link rel="stylesheet" href="/javascripts/review-paint/angular-paint.css"/&gt;
-    &lt;script src="/javascripts/angular/angular.min.js"&gt;&lt;/script&gt;
-    &lt;script src="/javascripts/angular/angular-all.js"&gt;&lt;/script&gt;
-    &lt;script src="/javascripts/review/kinetic.min.5.0.1.js"&gt;&lt;/script&gt;
-    &lt;script src="/javascripts/review-paint/angular-paint.js"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="css/reset.css"/&gt;
+    &lt;link rel="stylesheet" href="css/angular-paint.css"/&gt;
+    &lt;script src="js/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="js/angular-sanitize.js"&gt;&lt;/script&gt;
+    &lt;script src="js/kinetic.min.5.0.1.js"&gt;&lt;/script&gt;
+    &lt;script src="js/angular-paint.js"&gt;&lt;/script&gt;
 </pre>
-上面是demo中文件地址，添加时，注意文件路径，且有一个图标图片文件，默认是与css在同一目录，如果需要修改，可以直接在angular-paint.css上直接进行修改。
+上面是demo中文件地址，添加时，注意文件路径，且有一个图标图片文件，默认是在css上一目录，如果需要修改，可以直接在angular-paint.css上直接进行修改。
 
 在angular中使用，在angular中添加非常简单，只需要添加相应模块即可如下：
 <pre>
