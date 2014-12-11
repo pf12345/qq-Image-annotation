@@ -86,9 +86,7 @@ angular.module('reviewPaint', ["ngSanitize","angular-paint"]);
 2. 运行需要搭建一个本地服务器上运行，即不能直接本地打开，即路径不能是：“file:///”开始；
 3. angular在上面html代码需要修改如下（jquery则需要设置exportImg为true）：
 <pre>
-
 &lt;div paint img-src="test.png" exportImg &gt;&lt;/div&gt;
-
 </pre>
 如果有以上添加满足，则可以导出整体图片，导出结果如下：
 
