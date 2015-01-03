@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-
     var img = new Image();
     img.src = 'https://file.mockplus.cn/webapp/project/pbEQpnK9A/fh29Zfums.png?v=1417696400000';
     img.onload = function() {

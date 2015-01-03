@@ -107,6 +107,8 @@
             '</div>' +
             '</div>' +
             '</div>' +
+            '<a>' +
+            '<i class="tool_icon" ></i>' +
             '<a ng-click="switchingMode(\'painting\')" data-active="painting" class="active">' +
             '<i class="tool_icon tool_pencil" title="绘画"></i>' +
             '</a>' +
@@ -135,8 +137,8 @@
             '<i class="tool_icon tool_delete" title="清除所有"></i>' +
             '</a>' +
             '<div class="save">' +
-            '<input type="button" class="button btn-cancel" value="取消">' +
-            '<input type="button" id="save" class="button btn-save" value="保存">' +
+            //'<input type="button" class="button btn-cancel btn" value="取消">' +
+            '<input type="button" id="save" class="button btn-save btn" value="保存">' +
             '</div>' +
             '</div>' +
             '<div class="content" id="review-paint-content">' +
